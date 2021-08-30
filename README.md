@@ -93,9 +93,7 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
 
 ```
 
-```  
-
-### enum
+### Enum
 **[LibrarySymbol & Library](https://github.com/YamamotoDesu/TimeFighter/blob/master/app/src/main/java/com/codewithkyo/timefighter/MainActivity.kt)**    
 ```swift  
 import UIKit
