@@ -58,23 +58,12 @@ class LibarayViewController: UITableViewController {
 ### ViewController   
 **[DetailViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/DetailViewController.swift)**    
 ```swift  
-
-import UIKit
-
 class DetailViewController: UIViewController {
     let book: Book
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var authorLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
-    
-    @IBAction func updateImage() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerController.isSourceTypeAvailable(.camera) ? .camera : .photoLibrary
-        imagePicker.allowsEditing = true
-        present(imagePicker, animated: true)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,13 +82,24 @@ class DetailViewController: UIViewController {
     }
 }
 
-extension DetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension DetailViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
         imageView.image = selectedImage
         Library.saveImage(selectedImage, forBook: book)
         dismiss(animated: true)
     }
+}
+
+extension DetailViewController: UINavigationControllerDelegate {
+    @IBAction func updateImage() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerController.isSourceTypeAvailable(.camera) ? .camera : .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true)
+    }
+    
 }
 
 ```
