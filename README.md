@@ -4,7 +4,7 @@
 
 
 ### TableViewController   
-**[LibarayViewController](https://github.com/YamamotoDesu/TimeFighter/blob/master/app/src/main/java/com/codewithkyo/timefighter/MainActivity.kt)**    
+**[LibarayViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/LibarayViewController.swift)**    
 ```swift  
 class LibarayViewController: UITableViewController {
 
@@ -45,7 +45,7 @@ class LibarayViewController: UITableViewController {
 ```  
 
 ### ViewController   
-**[DetailViewController](https://github.com/YamamotoDesu/TimeFighter/blob/master/app/src/main/java/com/codewithkyo/timefighter/MainActivity.kt)**    
+**[DetailViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/DetailViewController.swift)**    
 ```swift  
 
 import UIKit
@@ -94,7 +94,7 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
 ```
 
 ### Enum
-**[LibrarySymbol & Library](https://github.com/YamamotoDesu/TimeFighter/blob/master/app/src/main/java/com/codewithkyo/timefighter/MainActivity.kt)**    
+**[LibrarySymbol & Library](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/LibrarySymbol.swift)**    
 ```swift  
 import UIKit
 
