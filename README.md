@@ -1,7 +1,15 @@
 # TableViewController  
 ## Preview  
-<img src="https://user-images.githubusercontent.com/47273077/131290794-1a7b931d-8248-4c95-aa30-28aada59f2d6.png" width="300" height="600">
-<img src="https://user-images.githubusercontent.com/47273077/131290810-1f712584-e144-44e8-a378-c80cc9c00e01.png" width="300" height="600">
+<table border="0">
+    <tr>
+        <tr>
+            <th>Home</th>
+            <th>Detail</th>
+        </tr>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131290794-1a7b931d-8248-4c95-aa30-28aada59f2d6.png" width="300"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131290810-1f712584-e144-44e8-a378-c80cc9c00e01.png" width="300"></td>
+    </tr>
+</table>
 
 ### Storyboard   
 <img src="https://user-images.githubusercontent.com/47273077/131291000-38aac9af-971e-4c2e-85bb-dc5b3f0b6381.png" width="900" height="600">
