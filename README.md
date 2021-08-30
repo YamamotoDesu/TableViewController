@@ -103,7 +103,7 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
 ```
 
 ### Enum
-**[LibrarySymbol & Library](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/LibrarySymbol.swift)**    
+**[LibrarySymbol & Library](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/Library.swift)**    
 ```swift  
 import UIKit
 
