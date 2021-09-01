@@ -20,10 +20,10 @@
             <th>Next</th>
             <th>Done</th>
         </tr>
-        <td><img src="https://user-images.githubusercontent.com/47273077/131758608-dfe95f46-1630-4b5a-8d43-1d0d16cae3b6.png" width="300"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131759017-d563d523-235e-4414-99b9-a91bdf09dbca.png" width="300"></td>
         <td><img src="https://user-images.githubusercontent.com/47273077/131758855-8b0d980f-4df6-42ea-961d-3f485f724225.png" width="300"></td>
     </tr>
-</table>
+</table>  
 
 ## Overview    
 ### Storyboard   
