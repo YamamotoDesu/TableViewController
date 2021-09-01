@@ -13,12 +13,26 @@
     </tr>
 </table>
 
+## Functinality  
+<table border="0">
+    <tr>
+        <tr>
+            <th>Next</th>
+            <th>Done</th>
+        </tr>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131758608-dfe95f46-1630-4b5a-8d43-1d0d16cae3b6.png" width="300"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131758855-8b0d980f-4df6-42ea-961d-3f485f724225.png" width="300"></td>
+    </tr>
+</table>
+
+## Overview    
 ### Storyboard   
 <img src="https://user-images.githubusercontent.com/47273077/131757840-7cb0ff28-a542-4061-8490-a25d82b84a93.png" width="900" height="600">  
 
-
 ### Xib  
-<img src="https://user-images.githubusercontent.com/47273077/131757926-01ff7337-c30e-452e-9359-fa86918ab848.png" width="500" height="300">
+<img src="https://user-images.githubusercontent.com/47273077/131757926-01ff7337-c30e-452e-9359-fa86918ab848.png" width="500" height="300">  
+
+
 
 ### TableViewController   
 **[LibarayViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/LibarayViewController.swift)**    
