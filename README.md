@@ -5,14 +5,20 @@
         <tr>
             <th>Home</th>
             <th>Detail</th>
+            <th>Register</th>
         </tr>
-        <td><img src="https://user-images.githubusercontent.com/47273077/131290794-1a7b931d-8248-4c95-aa30-28aada59f2d6.png" width="300"></td>
-        <td><img src="https://user-images.githubusercontent.com/47273077/131290810-1f712584-e144-44e8-a378-c80cc9c00e01.png" width="300"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131757637-347c429b-5261-4ea7-90cf-cf65ee82bd2f.png" width="300"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131757681-91b14c3d-2858-4d3f-be7d-44eec5cd5787.png" width="300"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131757740-1b7d83ab-5784-4086-9e64-56b2bebc3e55.png" width="300"></td>
     </tr>
 </table>
 
 ### Storyboard   
-<img src="https://user-images.githubusercontent.com/47273077/131291000-38aac9af-971e-4c2e-85bb-dc5b3f0b6381.png" width="900" height="600">
+<img src="https://user-images.githubusercontent.com/47273077/131757840-7cb0ff28-a542-4061-8490-a25d82b84a93.png" width="900" height="600">  
+
+
+### Xib  
+<img src="https://user-images.githubusercontent.com/47273077/131757926-01ff7337-c30e-452e-9359-fa86918ab848.png" width="500" height="300">
 
 ### TableViewController   
 **[LibarayViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/LibarayViewController.swift)**    
