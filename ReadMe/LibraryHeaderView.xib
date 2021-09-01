@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LibraryHeaderView" customModule="ReadMe" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="LibraryHeaderView" id="iN0-l3-epB" customClass="LibraryHeaderView" customModule="ReadMe" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="412" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookTexture" translatesAutoresizingMaskIntoConstraints="NO" id="uGq-tI-5oC">
+                    <rect key="frame" x="0.0" y="0.0" width="412" height="60"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSM-BE-RzZ">
+                    <rect key="frame" x="134.5" y="16" width="143" height="28"/>
+                    <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="24"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="uGq-tI-5oC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0iC-7P-aTb"/>
+                <constraint firstItem="uGq-tI-5oC" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="7Zy-X7-4yp"/>
+                <constraint firstItem="uGq-tI-5oC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QkF-oC-fxo"/>
+                <constraint firstItem="lSM-BE-RzZ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.347087" id="adQ-B4-55R"/>
+                <constraint firstItem="lSM-BE-RzZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bti-8Z-2ph"/>
+                <constraint firstItem="uGq-tI-5oC" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="iMK-JK-2Nm"/>
+                <constraint firstItem="lSM-BE-RzZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xAE-Zt-ee8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="lSM-BE-RzZ" id="xEy-Vd-NLa"/>
+            </connections>
+            <point key="canvasLocation" x="146.37681159420291" y="83.705357142857139"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BookTexture" width="1000" height="196"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
