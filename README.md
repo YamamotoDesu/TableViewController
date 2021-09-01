@@ -17,11 +17,11 @@
 <table border="0">
     <tr>
         <tr>
-            <th>Next</th>
-            <th>Done</th>
+            <th>Preview</th>
+            <th>Storyboard</th>
         </tr>
         <td><img src="https://user-images.githubusercontent.com/47273077/131759017-d563d523-235e-4414-99b9-a91bdf09dbca.png" width="200"></td>
-        <td><img src="https://user-images.githubusercontent.com/47273077/131758855-8b0d980f-4df6-42ea-961d-3f485f724225.png" width="200"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131759521-5074dd2b-fb7b-41f0-aaa1-cbc4621ddf1c.png" width="500" height="300"></td>
     </tr>
 </table>  
 
