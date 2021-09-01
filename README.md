@@ -23,53 +23,97 @@
 ### TableViewController   
 **[LibarayViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/LibarayViewController.swift)**    
 ```swift  
-class LibarayViewController: UITableViewController {
+class LibraryHeaderView: UITableViewHeaderFooterView {
+    static let reuseIdentifier = "\(LibraryHeaderView.self)"
+    @IBOutlet var titleLabel: UILabel!
+}
 
-    @IBSegueAction func showDetailView(_ coder: NSCoder) -> DetailViewController? {
+class LibrayTableViewController: UITableViewController {
+
+    @IBSegueAction func showDetailView(_ coder: NSCoder) -> DetailTableViewController? {
         guard let indexPath = tableView.indexPathForSelectedRow else {
             fatalError("Nothing selected")
         }
         
         let book = Library.books[indexPath.row]
-        return DetailViewController(coder: coder, book: book)
+        return DetailTableViewController(coder: coder, book: book)
+    }
+    
+    @IBSegueAction func registerView(_ coder: NSCoder) -> NewBookTableViewController? {
+        return NewBookTableViewController(coder: coder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.register(UINib(nibName: "\(LibraryHeaderView.self)", bundle: nil), forHeaderFooterViewReuseIdentifier: LibraryHeaderView.reuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+    
+    // MARK: - Delegate
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        section == 1 ? "Read Me!" : nil
+    }
+    
+    // MARK: - Data Source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 { return nil }
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: LibraryHeaderView.reuseIdentifier) as? LibraryHeaderView else {
+            return nil
+        }
+        
+        headerView.titleLabel.text = "Read Me!"
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section != 0 ? 60 : 0
+    }
 
     // MARK:- Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Library.books.count
+        section == 0 ? 1 : Library.books.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
+        if indexPath == IndexPath(row: 0, section: 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewBookCell", for: indexPath)
+            return cell
+        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(BookCell.self)", for: indexPath) as? BookCell else {
+            fatalError("Could not create BookCell")
+        }
         let book = Library.books[indexPath.row]
-        cell.textLabel?.text = book.title
-        cell.imageView?.image = book.image
+        cell.titleLabel.text = book.title
+        cell.authorLabel.text = book.author
+        cell.bookThumbnail.image = book.image
+        cell.bookThumbnail.layer.cornerRadius = 12
         return cell
     }
 
 }
+
 
 ```  
 
 ### ViewController   
 **[DetailViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/DetailViewController.swift)**    
 ```swift  
-class DetailViewController: UIViewController {
+class DetailTableViewController: UITableViewController {
     let book: Book
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var authorLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var reviewTextview: UITextView!
     
     @IBAction func updateImage() {
         let imagePicker = UIImagePickerController()
@@ -82,8 +126,14 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = book.image
+        imageView.layer.cornerRadius = 60
         titleLabel.text = book.title
         authorLabel.text = book.author
+        
+        if let review = book.review {
+            reviewTextview.text = review
+        }
+        reviewTextview.addDoneButton()
     }
     
     required init?(coder: NSCoder) {
@@ -96,7 +146,7 @@ class DetailViewController: UIViewController {
     }
 }
 
-extension DetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension DetailTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
         imageView.image = selectedImage
@@ -105,15 +155,47 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
 }
 
+extension DetailTableViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.resignFirstResponder()
+    }
+}
+
+extension UITextView {
+    func addDoneButton() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.resignFirstResponder))
+        toolbar.items = [flexSpace, doneButton]
+        self.inputAccessoryView = toolbar
+        
+    }
+}
+
+
+```  
+
+### Cell
+**[BookCell](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/BookCell.swift)**    
+```swift 
+
+class BookCell: UITableViewCell {
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var authorLabel: UILabel!
+    @IBOutlet var reviewLabel: UILabel!
+    
+    @IBOutlet var readMeBookmark: UIImageView!
+    @IBOutlet var bookThumbnail: UIImageView!
+}
+
 
 ```
 
 ### Enum
 **[LibrarySymbol & Library](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/Library.swift)**    
 ```swift  
-import UIKit
-
-// MARK:- Reusable SFSymbol Images
+/ MARK:- Reusable SFSymbol Images
 enum LibrarySymbol {
     case bookmark
     case bookmarkFill
@@ -176,4 +258,22 @@ extension FileManager {
     }
 }
 
+
 ```  
+
+### Model
+**[Book](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/Book.swift)**    
+```swift  
+
+struct Book {
+    let title: String
+    let author: String
+    var review: String?
+    
+    var image: UIImage {
+        Library.loadImage(forBook: self) ?? LibrarySymbol.letterSquare(letter: title.first).image
+    }
+}
+
+
+```   
