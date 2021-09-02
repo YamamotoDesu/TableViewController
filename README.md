@@ -96,6 +96,17 @@ class DetailTableViewController: UITableViewController {
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true)
     }
+}
+
+extension DetailTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        imageView.image = selectedImage
+        Library.saveImage(selectedImage, forBook: book)
+        dismiss(animated: true)
+    }
+}
+
 
 ```
 
