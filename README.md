@@ -81,7 +81,7 @@ extension UITextView {
         <tr>
             <th>Preview</th>
         </tr>
-        <td><img src="https://user-images.githubusercontent.com/47273077/131838427-21b52c1c-abfd-4c78-8906-2d39c57480ee.png" width="200"></td>
+        <td><img src="https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/gif/UIImagePickerController.gif" width="200"></td>
     </tr>
 </table>  
 
