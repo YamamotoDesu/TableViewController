@@ -108,9 +108,33 @@ extension DetailTableViewController: UIImagePickerControllerDelegate, UINavigati
 }
 
 
-```
+```  
 
-
+### Appearance  
+<table border="0">
+    <tr>
+        <tr>
+            <th>Light</th>
+            <th>Light</th>
+            <th>Dark</th>
+            <th>Dark</th>
+        </tr>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131845712-1562f391-056e-4ada-92f7-6980303bdd6d.png" width="200"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131845965-53abfc0c-6fa0-4d6e-8a15-b7974b63313c.png" width="200"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131844840-e041350f-261b-46c5-a35e-20be43e042f9.png" width="200"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131844572-b4084744-cb67-41ba-8238-817ce6819a50.png" width="200"></td>
+    </tr>
+</table>  
+<table border="0">
+    <tr>
+        <tr>
+            <th>Assets</th>
+            <th>Global Tint</th>
+        </tr>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131847025-3e06a374-b950-4e6d-857b-8b63c8f4ef44.png" width="500"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131848069-8b53ad43-3543-4934-acae-6d6347fbdbd3.png" width="500"></td>
+    </tr>
+</table> 
 
 ## Overview    
 ### Storyboard   
