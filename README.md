@@ -19,14 +19,12 @@
     <tr>
         <tr>
             <th>Preview</th>
-            <th>Storyboard</th>
-            <th>Set Delegate</th>
         </tr>
-        <td><img src="https://user-images.githubusercontent.com/47273077/131759017-d563d523-235e-4414-99b9-a91bdf09dbca.png" width="200"></td>
-        <td><img src="https://user-images.githubusercontent.com/47273077/131759521-5074dd2b-fb7b-41f0-aaa1-cbc4621ddf1c.png" width="500" height="300"></td>
-        <td><img src="https://user-images.githubusercontent.com/47273077/131760195-f83527ae-b42a-492c-98bf-96985d9792e0.png" width="800" height="200"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131838427-21b52c1c-abfd-4c78-8906-2d39c57480ee.png" width="200"></td>
     </tr>
 </table>  
+![image]()
+
 
 ```swift  
 extension NewBookTableViewController: UITextFieldDelegate {
