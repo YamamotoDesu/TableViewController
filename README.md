@@ -55,13 +55,26 @@ extension NewBookTableViewController: UITextFieldDelegate {
 </table>  
 
 ```swift  
-extension NewBookTableViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == titleTextField {
-            return authorextField.becomeFirstResponder()
-        } else {
-            return textField.resignFirstResponder()
-        }
+
+class DetailTableViewController: UITableViewController {
+
+    @IBOutlet var reviewTextview: UITextView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        reviewTextview.addDoneButton()
+    }
+
+}
+extension UITextView {
+    func addDoneButton() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.resignFirstResponder))
+        toolbar.items = [flexSpace, doneButton]
+        self.inputAccessoryView = toolbar
+        
     }
 }
 ```   
