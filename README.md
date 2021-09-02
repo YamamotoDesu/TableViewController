@@ -75,6 +75,30 @@ extension UITextView {
 }
 ```   
 
+### UIImagePickerController
+<table border="0">
+    <tr>
+        <tr>
+            <th>Preview</th>
+        </tr>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131838427-21b52c1c-abfd-4c78-8906-2d39c57480ee.png" width="200"></td>
+    </tr>
+</table>  
+
+```swift 
+
+class DetailTableViewController: UITableViewController {
+
+    @IBAction func updateImage() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerController.isSourceTypeAvailable(.camera) ? .camera : .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true)
+    }
+
+```
+
 
 
 ## Overview    
