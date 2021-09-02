@@ -131,7 +131,7 @@ extension DetailTableViewController: UIImagePickerControllerDelegate, UINavigati
             <th>Assets</th>
             <th>Global Tint</th>
         </tr>
-        <td><img src="https://user-images.githubusercontent.com/47273077/131847025-3e06a374-b950-4e6d-857b-8b63c8f4ef44.png" width="500"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131848293-b0b18aa1-716f-468b-8f6c-0693b193a6c1.png" width="500"></td>
         <td><img src="https://user-images.githubusercontent.com/47273077/131848069-8b53ad43-3543-4934-acae-6d6347fbdbd3.png" width="500"></td>
     </tr>
 </table> 
