@@ -40,6 +40,34 @@ extension NewBookTableViewController: UITextFieldDelegate {
 }
 ```   
 
+### Toolbar
+<table border="0">
+    <tr>
+        <tr>
+            <th>Preview</th>
+            <th>Storyboard</th>
+            <th>Set Delegate</th>
+        </tr>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131759017-d563d523-235e-4414-99b9-a91bdf09dbca.png" width="200"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131759521-5074dd2b-fb7b-41f0-aaa1-cbc4621ddf1c.png" width="500" height="300"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/131760195-f83527ae-b42a-492c-98bf-96985d9792e0.png" width="800" height="200"></td>
+    </tr>
+</table>  
+
+```swift  
+extension NewBookTableViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == titleTextField {
+            return authorextField.becomeFirstResponder()
+        } else {
+            return textField.resignFirstResponder()
+        }
+    }
+}
+```   
+
+
+
 ## Overview    
 ### Storyboard   
 <img src="https://user-images.githubusercontent.com/47273077/131757840-7cb0ff28-a542-4061-8490-a25d82b84a93.png" width="900" height="600">  
