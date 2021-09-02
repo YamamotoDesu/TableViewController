@@ -27,6 +27,18 @@
         <td><img src="https://user-images.githubusercontent.com/47273077/131760195-f83527ae-b42a-492c-98bf-96985d9792e0.png" width="800" height="200"></td>
     </tr>
 </table>  
+**[NewBookTableViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/NewBookTableViewController.swift)**    
+```swift  
+extension NewBookTableViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == titleTextField {
+            return authorextField.becomeFirstResponder()
+        } else {
+            return textField.resignFirstResponder()
+        }
+    }
+}
+```   
 
 ## Overview    
 ### Storyboard   
