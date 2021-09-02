@@ -122,7 +122,7 @@ class LibrayTableViewController: UITableViewController {
 ```  
 
 ### ViewController   
-**[DetailViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/NewBookTableViewController.swift)**    
+**[NewBookTableViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/NewBookTableViewController.swift)**    
 ```swift  
 class NewBookTableViewController: UITableViewController {
     
