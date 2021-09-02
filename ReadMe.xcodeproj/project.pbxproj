@@ -10,6 +10,7 @@
 		7B81253A26DCAEC90090A9CA /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B81253926DCAEC90090A9CA /* BookCell.swift */; };
 		7B81253D26DD17C90090A9CA /* NewBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B81253C26DD17C90090A9CA /* NewBookTableViewController.swift */; };
 		7B81254326DF9FDF0090A9CA /* LibraryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B81254226DF9FDE0090A9CA /* LibraryHeaderView.xib */; };
+		7B81254B26E0F9960090A9CA /* UIImagePickerController.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7B81254A26E0F9950090A9CA /* UIImagePickerController.gif */; };
 		7BADA08026DB743100318DDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BADA07F26DB743100318DDF /* AppDelegate.swift */; };
 		7BADA08226DB743100318DDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BADA08126DB743100318DDF /* SceneDelegate.swift */; };
 		7BADA08426DB743100318DDF /* LibrayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BADA08326DB743100318DDF /* LibrayTableViewController.swift */; };
@@ -25,6 +26,7 @@
 		7B81253926DCAEC90090A9CA /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		7B81253C26DD17C90090A9CA /* NewBookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookTableViewController.swift; sourceTree = "<group>"; };
 		7B81254226DF9FDE0090A9CA /* LibraryHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryHeaderView.xib; sourceTree = "<group>"; };
+		7B81254A26E0F9950090A9CA /* UIImagePickerController.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = UIImagePickerController.gif; sourceTree = "<group>"; };
 		7BADA07C26DB743100318DDF /* ReadMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BADA07F26DB743100318DDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BADA08126DB743100318DDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B81254926E0F6DD0090A9CA /* gif */ = {
+			isa = PBXGroup;
+			children = (
+				7B81254A26E0F9950090A9CA /* UIImagePickerController.gif */,
+			);
+			path = gif;
+			sourceTree = "<group>";
+		};
 		7BADA07326DB743100318DDF = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +78,7 @@
 		7BADA07E26DB743100318DDF /* ReadMe */ = {
 			isa = PBXGroup;
 			children = (
+				7B81254926E0F6DD0090A9CA /* gif */,
 				7BADA0A926DC627300318DDF /* Library.swift */,
 				7BADA07F26DB743100318DDF /* AppDelegate.swift */,
 				7BADA08126DB743100318DDF /* SceneDelegate.swift */,
@@ -145,6 +156,7 @@
 				7BADA08C26DB743400318DDF /* LaunchScreen.storyboard in Resources */,
 				7BADA08926DB743400318DDF /* Assets.xcassets in Resources */,
 				7BADA08726DB743100318DDF /* Main.storyboard in Resources */,
+				7B81254B26E0F9960090A9CA /* UIImagePickerController.gif in Resources */,
 				7B81254326DF9FDF0090A9CA /* LibraryHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
