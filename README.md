@@ -178,19 +178,59 @@ class LibrayTableViewController: UITableViewController {
 ### TableViewController   
 **[LibarayViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/LibarayViewController.swift)**    
 ```swift  
+import UIKit
+
 class LibraryHeaderView: UITableViewHeaderFooterView {
     static let reuseIdentifier = "\(LibraryHeaderView.self)"
     @IBOutlet var titleLabel: UILabel!
 }
 
-class LibrayTableViewController: UITableViewController {
+enum SortStyle {
+    case title
+    case author
+    case readme
+}
 
+enum Section: String, CaseIterable {
+    case addNew
+    case readMe = "Read Me!"
+    case finished = "Fished"
+}
+
+class LibrayTableViewController: UITableViewController {
+    
+    var dataSource: LibraryDataSource!
+    
+    @IBOutlet var sortButtons: [UIBarButtonItem]!
+    
+    @IBAction func sortByTitle(_ sender: UIBarButtonItem) {
+        dataSource.update(sortStyle: .title)
+        updateTintColors(tappedButton: sender)
+    }
+    
+    @IBAction func sortByAuthor(_ sender: UIBarButtonItem) {
+        dataSource.update(sortStyle: .author)
+        updateTintColors(tappedButton: sender)
+    }
+    
+    @IBAction func sortByReadMe(_ sender: UIBarButtonItem) {
+        dataSource.update(sortStyle: .readme)
+        updateTintColors(tappedButton: sender)
+    }
+    
+    func updateTintColors(tappedButton: UIBarButtonItem) {
+        sortButtons.forEach { button in
+            button.tintColor = button == tappedButton
+                ? button.customView?.tintColor : .secondaryLabel
+            
+        }
+    }
+    
     @IBSegueAction func showDetailView(_ coder: NSCoder) -> DetailTableViewController? {
-        guard let indexPath = tableView.indexPathForSelectedRow else {
+        guard let indexPath = tableView.indexPathForSelectedRow,
+              let book = dataSource.itemIdentifier(for: indexPath) else {
             fatalError("Nothing selected")
         }
-        
-        let book = Library.books[indexPath.row]
         return DetailTableViewController(coder: coder, book: book)
     }
     
@@ -200,13 +240,17 @@ class LibrayTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = editButtonItem
 
         tableView.register(UINib(nibName: "\(LibraryHeaderView.self)", bundle: nil), forHeaderFooterViewReuseIdentifier: LibraryHeaderView.reuseIdentifier)
+        
+        configureDataSource()
+        dataSource.update(sortStyle: .readme)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        dataSource.update(sortStyle: dataSource.currentSortStyle)
     }
     
     // MARK: - Delegate
@@ -225,7 +269,7 @@ class LibrayTableViewController: UITableViewController {
             return nil
         }
         
-        headerView.titleLabel.text = "Read Me!"
+        headerView.titleLabel.text = Section.allCases[section].rawValue
         return headerView
     }
     
@@ -234,26 +278,92 @@ class LibrayTableViewController: UITableViewController {
     }
 
     // MARK:- Data Source
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        section == 0 ? 1 : Library.books.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath == IndexPath(row: 0, section: 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewBookCell", for: indexPath)
+    func configureDataSource() {
+        dataSource = LibraryDataSource(tableView: tableView) { (tableView, indexPath, book) -> UITableViewCell? in
+            if indexPath == IndexPath(row: 0, section: 0) {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NewBookCell", for: indexPath)
+                return cell
+            }
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(BookCell.self)", for: indexPath) as? BookCell else {
+                fatalError("Could not create BookCell")
+            }
+            cell.titleLabel.text = book.title
+            cell.authorLabel.text = book.author
+            cell.bookThumbnail.image = book.image ?? LibrarySymbol.letterSquare(letter: book.title.first).image
+            cell.bookThumbnail.layer.cornerRadius = 12
+            
+            if let review = book.review {
+                cell.reviewLabel.text = review
+                cell.reviewLabel.isHidden = false
+            }
+            cell.readMeBookmark.isHidden = !book.readMe
             return cell
         }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(BookCell.self)", for: indexPath) as? BookCell else {
-            fatalError("Could not create BookCell")
-        }
-        let book = Library.books[indexPath.row]
-        cell.titleLabel.text = book.title
-        cell.authorLabel.text = book.author
-        cell.bookThumbnail.image = book.image
-        cell.bookThumbnail.layer.cornerRadius = 12
-        return cell
     }
+    
+}
 
+class LibraryDataSource: UITableViewDiffableDataSource<Section, Book> {
+    
+    var currentSortStyle: SortStyle = .title
+    
+    func update(sortStyle: SortStyle, animatingDifferences: Bool = true) {
+        currentSortStyle = sortStyle
+        var newSnappshot = NSDiffableDataSourceSnapshot<Section, Book>()
+        newSnappshot.appendSections(Section.allCases)
+        let booksByReadMe: [Bool: [Book]] = Dictionary(grouping: Library.books, by: \.readMe)
+        for (readMe, books) in booksByReadMe {
+            var sortedBooks: [Book]
+            switch  sortStyle {
+            case .title:
+                sortedBooks = books.sorted { $0.title.localizedCaseInsensitiveCompare($1.title) == .orderedAscending }
+            case .author:
+                sortedBooks = books.sorted { $0.author.localizedCaseInsensitiveCompare($1.author) == .orderedAscending }
+            case .readme:
+                sortedBooks = books
+            }
+            newSnappshot.appendItems(sortedBooks, toSection: readMe ? .readMe : .finished)
+        }
+        newSnappshot.appendItems([Book.mockBook], toSection: .addNew)
+        apply(newSnappshot, animatingDifferences: animatingDifferences)
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        indexPath.section == snapshot().indexOfSection(.addNew) ? false : true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard  let book = self.itemIdentifier(for: indexPath) else {
+                return
+            }
+            Library.delete(book: book)
+            update(sortStyle: currentSortStyle)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section != snapshot().indexOfSection(.readMe)
+            && currentSortStyle == .readme{
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard sourceIndexPath != destinationIndexPath,
+              sourceIndexPath.section == destinationIndexPath.section,
+              let bookToMove = itemIdentifier(for: sourceIndexPath),
+              let bookAtDestination = itemIdentifier(for: destinationIndexPath) else {
+            apply(snapshot(), animatingDifferences: false)
+            return
+        }
+        
+        Library.reorderBooks(bookToMove: bookToMove, bookAtDestination: bookAtDestination)
+        update(sortStyle: currentSortStyle, animatingDifferences: false)
+    }
 }
 
 
@@ -262,11 +372,29 @@ class LibrayTableViewController: UITableViewController {
 ### ViewController   
 **[NewBookTableViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/NewBookTableViewController.swift)**    
 ```swift  
+import UIKit
+
 class NewBookTableViewController: UITableViewController {
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var authorextField: UITextField!
     @IBOutlet var bookImageView: UIImageView!
+    
+    var newBookImage: UIImage?
+    
+    @IBAction func cancel() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func saveNewBook() {
+        guard let title = titleTextField.text,
+              let author = authorextField.text,
+              !title.isEmpty,
+              !author.isEmpty else { return }
+        
+        Library.addNew(book: Book(title: title, author: author, readMe: true, image: newBookImage))
+        navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func updateImage() {
         let imagePicker = UIImagePickerController()
@@ -286,6 +414,7 @@ extension NewBookTableViewController: UIImagePickerControllerDelegate, UINavigat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
         bookImageView.image = selectedImage
+        newBookImage = selectedImage
         dismiss(animated: true)
     }
 }
@@ -300,19 +429,36 @@ extension NewBookTableViewController: UITextFieldDelegate {
     }
 }
 
-
 ```
 
 ### ViewController   
 **[DetailViewController](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/DetailViewController.swift)**    
 ```swift  
+import UIKit
+
 class DetailTableViewController: UITableViewController {
-    let book: Book
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var authorLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var reviewTextview: UITextView!
+    
+    var book: Book
+    
+    @IBOutlet var readMeButton: UIButton!
+    
+    @IBAction func toggleReadMe() {
+        book.readMe.toggle()
+        let image = book.readMe
+          ? LibrarySymbol.bookmarkFill.image
+          : LibrarySymbol.bookmark.image
+        readMeButton.setImage(image, for: .normal)
+    }
+    
+    @IBAction func saveChanges() {
+        Library.update(book: book)
+        navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func updateImage() {
         let imagePicker = UIImagePickerController()
@@ -324,7 +470,7 @@ class DetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = book.image
+        imageView.image = book.image ?? LibrarySymbol.letterSquare(letter: book.title.first).image
         imageView.layer.cornerRadius = 60
         titleLabel.text = book.title
         authorLabel.text = book.author
@@ -332,6 +478,12 @@ class DetailTableViewController: UITableViewController {
         if let review = book.review {
             reviewTextview.text = review
         }
+        
+        let image = book.readMe
+          ? LibrarySymbol.bookmarkFill.image
+          : LibrarySymbol.bookmark.image
+        readMeButton.setImage(image, for: .normal)
+        
         reviewTextview.addDoneButton()
     }
     
@@ -349,13 +501,14 @@ extension DetailTableViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
         imageView.image = selectedImage
-        Library.saveImage(selectedImage, forBook: book)
+        book.image = selectedImage
         dismiss(animated: true)
     }
 }
 
 extension DetailTableViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        book.review = textView.text
         textView.resignFirstResponder()
     }
 }
@@ -372,12 +525,12 @@ extension UITextView {
     }
 }
 
-
 ```  
 
 ### Cell
 **[BookCell](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/BookCell.swift)**    
 ```swift 
+import UIKit
 
 class BookCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
@@ -386,7 +539,9 @@ class BookCell: UITableViewCell {
     
     @IBOutlet var readMeBookmark: UIImageView!
     @IBOutlet var bookThumbnail: UIImageView!
+    
 }
+
 
 
 ```
@@ -394,68 +549,175 @@ class BookCell: UITableViewCell {
 ### Enum
 **[LibrarySymbol & Library](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/Library.swift)**    
 ```swift  
-/ MARK:- Reusable SFSymbol Images
+import UIKit
+
+// MARK:- Reusable SFSymbol Images
 enum LibrarySymbol {
-    case bookmark
-    case bookmarkFill
-    case book
-    case letterSquare(letter: Character?)
-    
-    var image: UIImage {
-        let imageName: String
-        switch self {
-        case .bookmark, .book:
-            imageName = "\(self)"
-        case .bookmarkFill:
-            imageName = "bookmark.fill"
-        case .letterSquare(let letter):
-            guard let letter = letter?.lowercased(),
-                  let image = UIImage(systemName: "\(letter).square")
-            else {
-                imageName = "square"
-                break
-            }
-            return image
-        }
-        return UIImage(systemName: imageName)!
+  case bookmark
+  case bookmarkFill
+  case book
+  case letterSquare(letter: Character?)
+  
+  var image: UIImage {
+    let imageName: String
+    switch self {
+    case .bookmark, .book:
+      imageName = "\(self)"
+    case .bookmarkFill:
+      imageName = "bookmark.fill"
+    case .letterSquare(let letter):
+      guard let letter = letter?.lowercased(),
+      let image = UIImage(systemName: "\(letter).square")
+        else {
+          imageName = "square"
+          break
+      }
+      return image
     }
+    return UIImage(systemName: imageName)!
+  }
 }
 
 // MARK:- Library
 enum Library {
-    static let books: [Book] = [
-        Book(title: "Ein Neues Land", author: "Shaun Tan"),
-        Book(title: "Bosch", author: "Laurinda Dixon"),
-        Book(title: "Dare to Lead", author: "Brené Brown"),
-        Book(title: "Blasting for Optimum Health Recipe Book", author: "NutriBullet"),
-        Book(title: "Drinking with the Saints", author: "Michael P. Foley"),
-        Book(title: "A Guide to Tea", author: "Adagio Teas"),
-        Book(title: "The Life and Complete Work of Francisco Goya", author: "P. Gassier & J Wilson"),
-        Book(title: "Lady Cottington's Pressed Fairy Book", author: "Lady Cottington"),
-        Book(title: "How to Draw Cats", author: "Janet Rancan"),
-        Book(title: "Drawing People", author: "Barbara Bradley"),
-        Book(title: "What to Say When You Talk to Yourself", author: "Shad Helmstetter")
-    ]
-    
-    static func saveImage(_ image: UIImage, forBook book: Book) {
-        let imageURL = FileManager.documentDirectoryURL.appendingPathComponent(book.title)
-        if let jpgData = image.jpegData(compressionQuality: 0.7) {
-            try? jpgData.write(to: imageURL, options: .atomicWrite)
-        }
-    }
-    
-    static func loadImage(forBook book: Book) -> UIImage? {
-        let imageURL = FileManager.documentDirectoryURL.appendingPathComponent(book.title)
-        return UIImage(contentsOfFile: imageURL.path)
-    }
-}
+  private static let starterData = [
+    Book(title: "Ein Neues Land", author: "Shaun Tan", readMe: true),
+    Book(title: "Bosch", author: "Laurinda Dixon", readMe: true),
+    Book(title: "Dare to Lead", author: "Brené Brown", readMe: false),
+    Book(title: "Blasting for Optimum Health Recipe Book", author: "NutriBullet", readMe:  false),
+    Book(title: "Drinking with the Saints", author: "Michael P. Foley", readMe: true),
+    Book(title: "A Guide to Tea", author: "Adagio Teas", readMe: false),
+    Book(title: "The Life and Complete Work of Francisco Goya", author: "P. Gassier & J Wilson", readMe: true),
+    Book(title: "Lady Cottington's Pressed Fairy Book", author: "Lady Cottington", readMe: false),
+    Book(title: "How to Draw Cats", author: "Janet Rancan", readMe: true),
+    Book(title: "Drawing People", author: "Barbara Bradley", readMe: false),
+    Book(title: "What to Say When You Talk to Yourself", author: "Shad Helmstetter", readMe: true)
+  ]
+  
+  static var books: [Book] = loadBooks()
+  
+  private static let booksJSONURL = URL(fileURLWithPath: "Books",
+                                relativeTo: FileManager.documentDirectoryURL).appendingPathExtension("json")
+  
+  
+  /// This method loads all existing data from the `booksJSONURL`, if available. If not, it will fall back to using `starterData`
+  /// - Returns: Returns an array of books, loaded from a JSON file
+  private static func loadBooks() -> [Book] {
+      let decoder = JSONDecoder()
 
+      guard let booksData = try? Data(contentsOf: booksJSONURL) else {
+        return starterData
+      }
+
+      do {
+        let books = try decoder.decode([Book].self, from: booksData)
+        return books.map { libraryBook in
+          Book(
+            title: libraryBook.title,
+            author: libraryBook.author,
+            review: libraryBook.review,
+            readMe: libraryBook.readMe,
+            image: loadImage(forBook: libraryBook)
+          )
+        }
+        
+      } catch let error {
+        print(error)
+        return starterData
+      }
+  }
+  
+  private static func saveAllBooks() {
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = .prettyPrinted
+
+    do {
+      let booksData = try encoder.encode(books)
+      try booksData.write(to: booksJSONURL, options: .atomicWrite)
+    } catch let error {
+      print(error)
+    }
+  }
+  
+  /// Adds a new book to the `books` array and saves it to disk.
+  /// - Parameters:
+  ///   - book: The book to be added to the library.
+  ///   - image: An optional image to associate with the book.
+  static func addNew(book: Book) {
+    if let image = book.image { saveImage(image, forBook: book) }
+    books.insert(book, at: 0)
+    saveAllBooks()
+  }
+  
+  
+  /// Updates the stored value for a single book.
+  /// - Parameter book: The book to be updated.
+  static func update(book: Book) {
+    if let newImage = book.image {
+      saveImage(newImage, forBook: book)
+    }
+    
+    guard let bookIndex = books.firstIndex(where: { storedBook in
+      book.title == storedBook.title } )
+    else {
+        print("No book to update")
+        return
+    }
+    
+    books[bookIndex] = book
+    saveAllBooks()
+  }
+  
+  /// Removes a book from the `books` array.
+  /// - Parameter book: The book to be deleted from the library.
+  static func delete(book: Book) {
+    guard let bookIndex = books.firstIndex(where: { storedBook in
+      book == storedBook } )
+      else { return }
+  
+    books.remove(at: bookIndex)
+    
+    let imageURL = FileManager.documentDirectoryURL.appendingPathComponent(book.title)
+    do {
+      try FileManager().removeItem(at: imageURL)
+    } catch let error { print(error) }
+    
+    saveAllBooks()
+  }
+  
+  static func reorderBooks(bookToMove: Book, bookAtDestination: Book) {
+    let destinationIndex = Library.books.firstIndex(of: bookAtDestination) ?? 0
+    books.removeAll(where: { $0.title == bookToMove.title })
+    books.insert(bookToMove, at: destinationIndex)
+    saveAllBooks()
+  }
+  
+  /// Saves an image associated with a given book title.
+  /// - Parameters:
+  ///   - image: The image to be saved.
+  ///   - title: The title of the book associated with the image.
+  static func saveImage(_ image: UIImage, forBook book: Book) {
+    let imageURL = FileManager.documentDirectoryURL.appendingPathComponent(book.title)
+    if let jpgData = image.jpegData(compressionQuality: 0.7) {
+      try? jpgData.write(to: imageURL, options: .atomicWrite)
+    }
+  }
+  
+  /// Loads and returns an image for a given book title.
+  /// - Parameter title: Title of the book you need an image for.
+  /// - Returns: The image associated with the given book title.
+  static func loadImage(forBook book: Book) -> UIImage? {
+    let imageURL = FileManager.documentDirectoryURL.appendingPathComponent(book.title)
+    return UIImage(contentsOfFile: imageURL.path)
+  }
+}
 
 extension FileManager {
-    static var documentDirectoryURL: URL {
-        return `default`.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    }
+  static var documentDirectoryURL: URL {
+    return `default`.urls(for: .documentDirectory, in: .userDomainMask)[0]
+  }
 }
+
 
 
 ```  
@@ -464,15 +726,26 @@ extension FileManager {
 **[Book](https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/Book.swift)**    
 ```swift  
 
-struct Book {
+import UIKit
+
+struct Book: Hashable {
     let title: String
     let author: String
     var review: String?
+    var readMe: Bool
     
-    var image: UIImage {
-        Library.loadImage(forBook: self) ?? LibrarySymbol.letterSquare(letter: title.first).image
-    }
+    var image: UIImage?
+    
+    static let mockBook = Book(title: "", author: "", readMe: true)
 }
 
+extension Book: Codable {
+    enum CodingKeys: String, CodingKey {
+        case title
+        case author
+        case review
+        case readMe
+    }
+}
 
 ```   
