@@ -245,7 +245,7 @@ extension DetailTableViewController: UIImagePickerControllerDelegate, UINavigati
 
 ```  
 
-### Appearance  
+### Light && Dark Appearance  
 <table border="0">
     <tr>
         <tr>
