@@ -141,6 +141,39 @@ class LibrayTableViewController: UITableViewController {
     }
 ```  
 
+### Move Item
+<table border="0">
+    <tr>
+        <tr>
+            <th>Move Item</th>
+        </tr>
+        <td><img src="https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/gif/Move.gif" width="300"></td>
+    </tr>
+</table>  
+
+```swift 
+
+ override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+      guard sourceIndexPath != destinationIndexPath,
+          sourceIndexPath.section == destinationIndexPath.section,
+          let bookToMove = itemIdentifier(for: sourceIndexPath),
+          let bookAtDestination = itemIdentifier(for: destinationIndexPath) else {
+          apply(snapshot(), animatingDifferences: false)
+          return
+      }
+        
+      Library.reorderBooks(bookToMove: bookToMove, bookAtDestination: bookAtDestination)
+      update(sortStyle: currentSortStyle, animatingDifferences: false)
+ }
+    
+ static func reorderBooks(bookToMove: Book, bookAtDestination: Book) {
+    let destinationIndex = Library.books.firstIndex(of: bookAtDestination) ?? 0
+    books.removeAll(where: { $0.title == bookToMove.title })
+    books.insert(bookToMove, at: destinationIndex)
+    saveAllBooks()
+  }
+```  
+
 ### Keyboard Toolbar
 <table border="0">
     <tr>
