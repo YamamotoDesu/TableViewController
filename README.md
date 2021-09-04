@@ -3,10 +3,12 @@
 <table border="0">
     <tr>
         <tr>
+            <th>Preview</th>
             <th>Home</th>
             <th>Detail</th>
             <th>Register</th>
         </tr>
+        <td><img src="https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/gif/Complete.gif" width="300"></td>
         <td><img src="https://user-images.githubusercontent.com/47273077/132089689-a47cfba8-e8af-4ea2-b0de-1d6ac9e78ffe.png" width="300"></td>
         <td><img src="https://user-images.githubusercontent.com/47273077/131757681-91b14c3d-2858-4d3f-be7d-44eec5cd5787.png" width="300"></td>
         <td><img src="https://user-images.githubusercontent.com/47273077/131757740-1b7d83ab-5784-4086-9e64-56b2bebc3e55.png" width="300"></td>
@@ -40,15 +42,87 @@ extension NewBookTableViewController: UITextFieldDelegate {
 }
 ```   
 
-### Toolbar
+### Toolbar  && Sort  
+<table border="0">
+    <tr>
+        <tr>
+            <th>Sort</th>
+            <th>Storyboard</th>
+        </tr>
+        <td><img src="https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/gif/Sort.gif" width="300"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/132090832-426dd54f-d975-4557-acb5-0ad119f9461b.png" width="600"></td>
+    </tr>
+</table>  
+
+```swift 
+enum SortStyle {
+    case title
+    case author
+    case readme
+}
+
+class LibrayTableViewController: UITableViewController {
+    
+    var dataSource: LibraryDataSource!
+    
+    @IBOutlet var sortButtons: [UIBarButtonItem]!
+    
+    @IBAction func sortByTitle(_ sender: UIBarButtonItem) {
+        dataSource.update(sortStyle: .title)
+        updateTintColors(tappedButton: sender)
+    }
+    
+    @IBAction func sortByAuthor(_ sender: UIBarButtonItem) {
+        dataSource.update(sortStyle: .author)
+        updateTintColors(tappedButton: sender)
+    }
+    
+    @IBAction func sortByReadMe(_ sender: UIBarButtonItem) {
+        dataSource.update(sortStyle: .readme)
+        updateTintColors(tappedButton: sender)
+    }
+    
+    func updateTintColors(tappedButton: UIBarButtonItem) {
+        sortButtons.forEach { button in
+            button.tintColor = button == tappedButton
+                ? button.customView?.tintColor : .secondaryLabel
+            
+        }
+    }
+    
+    func update(sortStyle: SortStyle, animatingDifferences: Bool = true) {
+        currentSortStyle = sortStyle
+        var newSnappshot = NSDiffableDataSourceSnapshot<Section, Book>()
+        newSnappshot.appendSections(Section.allCases)
+        let booksByReadMe: [Bool: [Book]] = Dictionary(grouping: Library.books, by: \.readMe)
+        for (readMe, books) in booksByReadMe {
+            var sortedBooks: [Book]
+            switch  sortStyle {
+            case .title:
+                sortedBooks = books.sorted { $0.title.localizedCaseInsensitiveCompare($1.title) == .orderedAscending }
+            case .author:
+                sortedBooks = books.sorted { $0.author.localizedCaseInsensitiveCompare($1.author) == .orderedAscending }
+            case .readme:
+                sortedBooks = books
+            }
+            newSnappshot.appendItems(sortedBooks, toSection: readMe ? .readMe : .finished)
+        }
+        newSnappshot.appendItems([Book.mockBook], toSection: .addNew)
+        apply(newSnappshot, animatingDifferences: animatingDifferences)
+    }
+```
+
+### Keyboard Toolbar
 <table border="0">
     <tr>
         <tr>
             <th>Preview</th>
+           
         </tr>
         <td><img src="https://user-images.githubusercontent.com/47273077/131838427-21b52c1c-abfd-4c78-8906-2d39c57480ee.png" width="200"></td>
     </tr>
 </table>  
+
 
 ```swift  
 
