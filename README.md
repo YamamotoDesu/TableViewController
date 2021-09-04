@@ -50,7 +50,7 @@ extension NewBookTableViewController: UITextFieldDelegate {
             <th>Storyboard</th>
         </tr>
         <td><img src="https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/gif/Sort.gif" width="300"></td>
-        <td><img src="https://user-images.githubusercontent.com/47273077/132090832-426dd54f-d975-4557-acb5-0ad119f9461b.png" width="600"></td>
+        <td><img src="https://user-images.githubusercontent.com/47273077/132090832-426dd54f-d975-4557-acb5-0ad119f9461b.png" height="500" width="700"></td>
     </tr>
 </table>  
 
@@ -110,7 +110,35 @@ class LibrayTableViewController: UITableViewController {
         newSnappshot.appendItems([Book.mockBook], toSection: .addNew)
         apply(newSnappshot, animatingDifferences: animatingDifferences)
     }
-```
+```  
+
+
+### Delete Item
+<table border="0">
+    <tr>
+        <tr>
+            <th>Sort</th>
+        </tr>
+        <td><img src="https://github.com/YamamotoDesu/TableViewController/blob/main/ReadMe/gif/Delete.gif" width="300"></td>
+    </tr>
+</table>  
+```swift 
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.rightBarButtonItem = editButtonItem
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard  let book = self.itemIdentifier(for: indexPath) else {
+                return
+            }
+            Library.delete(book: book)
+            update(sortStyle: currentSortStyle)
+        }
+    }
+```  
 
 ### Keyboard Toolbar
 <table border="0">
