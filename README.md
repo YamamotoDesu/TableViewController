@@ -168,7 +168,7 @@ class LibrayTableViewController: UITableViewController {
 
 ## Overview    
 ### Storyboard   
-<img src="https://user-images.githubusercontent.com/47273077/131757840-7cb0ff28-a542-4061-8490-a25d82b84a93.png" width="900" height="600">  
+<img src="https://user-images.githubusercontent.com/47273077/132089569-dcdf9b1a-99ad-44be-a5f9-d966c7cc3eae.png" width="900" height="600">  
 
 ### Xib  
 <img src="https://user-images.githubusercontent.com/47273077/131757926-01ff7337-c30e-452e-9359-fa86918ab848.png" width="500" height="300">  
