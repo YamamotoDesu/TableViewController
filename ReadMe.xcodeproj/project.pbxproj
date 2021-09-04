@@ -11,6 +11,11 @@
 		7B81253D26DD17C90090A9CA /* NewBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B81253C26DD17C90090A9CA /* NewBookTableViewController.swift */; };
 		7B81254326DF9FDF0090A9CA /* LibraryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B81254226DF9FDE0090A9CA /* LibraryHeaderView.xib */; };
 		7B81254B26E0F9960090A9CA /* UIImagePickerController.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7B81254A26E0F9950090A9CA /* UIImagePickerController.gif */; };
+		7B81254E26E108750090A9CA /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B81254D26E108740090A9CA /* Library.swift */; };
+		7B81255426E37A6C0090A9CA /* Complete.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7B81255326E37A6B0090A9CA /* Complete.gif */; };
+		7B81255726E37B400090A9CA /* Sort.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7B81255626E37B3F0090A9CA /* Sort.gif */; };
+		7B81255B26E37F380090A9CA /* Delete.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7B81255A26E37F380090A9CA /* Delete.gif */; };
+		7B81255F26E383000090A9CA /* Move.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7B81255E26E382FF0090A9CA /* Move.gif */; };
 		7BADA08026DB743100318DDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BADA07F26DB743100318DDF /* AppDelegate.swift */; };
 		7BADA08226DB743100318DDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BADA08126DB743100318DDF /* SceneDelegate.swift */; };
 		7BADA08426DB743100318DDF /* LibrayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BADA08326DB743100318DDF /* LibrayTableViewController.swift */; };
@@ -19,7 +24,6 @@
 		7BADA08C26DB743400318DDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BADA08A26DB743400318DDF /* LaunchScreen.storyboard */; };
 		7BADA09526DB787C00318DDF /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BADA09426DB787C00318DDF /* Book.swift */; };
 		7BADA09D26DC595F00318DDF /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BADA09C26DC595F00318DDF /* DetailTableViewController.swift */; };
-		7BADA0AA26DC627400318DDF /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BADA0A926DC627300318DDF /* Library.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,11 @@
 		7B81253C26DD17C90090A9CA /* NewBookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookTableViewController.swift; sourceTree = "<group>"; };
 		7B81254226DF9FDE0090A9CA /* LibraryHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryHeaderView.xib; sourceTree = "<group>"; };
 		7B81254A26E0F9950090A9CA /* UIImagePickerController.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = UIImagePickerController.gif; sourceTree = "<group>"; };
+		7B81254D26E108740090A9CA /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Library.swift; path = "../../../Downloads/video-tv-materials-versions-5.1/16-diffable-data-source/Library.swift"; sourceTree = "<group>"; };
+		7B81255326E37A6B0090A9CA /* Complete.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Complete.gif; sourceTree = "<group>"; };
+		7B81255626E37B3F0090A9CA /* Sort.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sort.gif; sourceTree = "<group>"; };
+		7B81255A26E37F380090A9CA /* Delete.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Delete.gif; sourceTree = "<group>"; };
+		7B81255E26E382FF0090A9CA /* Move.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Move.gif; sourceTree = "<group>"; };
 		7BADA07C26DB743100318DDF /* ReadMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BADA07F26DB743100318DDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BADA08126DB743100318DDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +46,6 @@
 		7BADA08D26DB743400318DDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BADA09426DB787C00318DDF /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		7BADA09C26DC595F00318DDF /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
-		7BADA0A926DC627300318DDF /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +62,11 @@
 		7B81254926E0F6DD0090A9CA /* gif */ = {
 			isa = PBXGroup;
 			children = (
+				7B81255326E37A6B0090A9CA /* Complete.gif */,
+				7B81255626E37B3F0090A9CA /* Sort.gif */,
 				7B81254A26E0F9950090A9CA /* UIImagePickerController.gif */,
+				7B81255E26E382FF0090A9CA /* Move.gif */,
+				7B81255A26E37F380090A9CA /* Delete.gif */,
 			);
 			path = gif;
 			sourceTree = "<group>";
@@ -79,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				7B81254926E0F6DD0090A9CA /* gif */,
-				7BADA0A926DC627300318DDF /* Library.swift */,
+				7B81254D26E108740090A9CA /* Library.swift */,
 				7BADA07F26DB743100318DDF /* AppDelegate.swift */,
 				7BADA08126DB743100318DDF /* SceneDelegate.swift */,
 				7BADA08326DB743100318DDF /* LibrayTableViewController.swift */,
@@ -155,7 +167,11 @@
 			files = (
 				7BADA08C26DB743400318DDF /* LaunchScreen.storyboard in Resources */,
 				7BADA08926DB743400318DDF /* Assets.xcassets in Resources */,
+				7B81255F26E383000090A9CA /* Move.gif in Resources */,
+				7B81255426E37A6C0090A9CA /* Complete.gif in Resources */,
 				7BADA08726DB743100318DDF /* Main.storyboard in Resources */,
+				7B81255B26E37F380090A9CA /* Delete.gif in Resources */,
+				7B81255726E37B400090A9CA /* Sort.gif in Resources */,
 				7B81254B26E0F9960090A9CA /* UIImagePickerController.gif in Resources */,
 				7B81254326DF9FDF0090A9CA /* LibraryHeaderView.xib in Resources */,
 			);
@@ -170,12 +186,12 @@
 			files = (
 				7B81253D26DD17C90090A9CA /* NewBookTableViewController.swift in Sources */,
 				7BADA09526DB787C00318DDF /* Book.swift in Sources */,
-				7BADA0AA26DC627400318DDF /* Library.swift in Sources */,
 				7BADA08426DB743100318DDF /* LibrayTableViewController.swift in Sources */,
 				7B81253A26DCAEC90090A9CA /* BookCell.swift in Sources */,
 				7BADA09D26DC595F00318DDF /* DetailTableViewController.swift in Sources */,
 				7BADA08026DB743100318DDF /* AppDelegate.swift in Sources */,
 				7BADA08226DB743100318DDF /* SceneDelegate.swift in Sources */,
+				7B81254E26E108750090A9CA /* Library.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ts3-ES-y2B">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +14,7 @@
             <objects>
                 <tableViewController id="XSG-1Y-k4h" customClass="LibrayTableViewController" customModule="ReadMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pw9-XH-JJP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -28,7 +29,7 @@
                                             <rect key="frame" x="20" y="0.0" width="374" height="100"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0zO-aQ-UKo">
-                                                    <rect key="frame" x="0.0" y="0.5" width="100" height="99"/>
+                                                    <rect key="frame" x="0.0" y="1" width="100" height="98.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="0zO-aQ-UKo" secondAttribute="height" multiplier="1:1" id="laC-Jy-DbU"/>
                                                     </constraints>
@@ -61,42 +62,46 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="hxN-9D-xVw">
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hxN-9D-xVw">
                                             <rect key="frame" x="20" y="10" width="374" height="80"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Egq-1I-JQ2">
-                                                    <rect key="frame" x="0.0" y="5" width="72" height="69.5"/>
+                                                    <rect key="frame" x="0.0" y="5.6666666666666643" width="72" height="69"/>
                                                     <color key="tintColor" systemColor="placeholderTextColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Egq-1I-JQ2" secondAttribute="height" multiplier="1:1" id="Yoi-uN-LVm"/>
                                                     </constraints>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6su-v4-G5D">
-                                                    <rect key="frame" x="103" y="13" width="271" height="54"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6su-v4-G5D">
+                                                    <rect key="frame" x="82" y="13" width="292" height="54"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ha-yV-X7v">
-                                                            <rect key="frame" x="0.0" y="0.0" width="271" height="26.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="292" height="26.333333333333332"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0g-19-0eY">
-                                                            <rect key="frame" x="0.0" y="30" width="271" height="24"/>
+                                                            <rect key="frame" x="0.0" y="30" width="292" height="24"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d27-Ap-DLP">
-                                                            <rect key="frame" x="0.0" y="44.5" width="271" height="0.0"/>
+                                                            <rect key="frame" x="0.0" y="44.666666666666671" width="292" height="0.0"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" image="bookmark.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hHe-28-r1w">
-                                                    <rect key="frame" x="374" y="23.5" width="0.0" height="33.5"/>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="750" image="bookmark.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hHe-28-r1w">
+                                                    <rect key="frame" x="374" y="20.333333333333332" width="40" height="39.999999999999993"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="hHe-28-r1w" secondAttribute="height" multiplier="1:1" id="BTy-6L-0Zy"/>
+                                                        <constraint firstAttribute="width" constant="40" id="bpD-tI-bft"/>
+                                                    </constraints>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
                                                 </imageView>
                                             </subviews>
@@ -127,7 +132,45 @@
                             <outlet property="delegate" destination="XSG-1Y-k4h" id="LF8-dP-S2l"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem systemItem="flexibleSpace" id="UXC-Db-GdT">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                        </barButtonItem>
+                        <barButtonItem title="Title" id="yWh-e6-cJ6">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                            <connections>
+                                <action selector="sortByTitle:" destination="XSG-1Y-k4h" id="ACN-0s-8hI"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="y2a-gK-Gx5">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                        </barButtonItem>
+                        <barButtonItem title="Author" id="5r6-Hp-iND">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                            <connections>
+                                <action selector="sortByAuthor:" destination="XSG-1Y-k4h" id="slB-61-5Cx"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="PE6-of-1ct">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                        </barButtonItem>
+                        <barButtonItem title="Read Me!" id="obo-o4-SgP" userLabel="Read Me!">
+                            <color key="tintColor" name="ReadMe Tint Color"/>
+                            <connections>
+                                <action selector="sortByReadMe:" destination="XSG-1Y-k4h" id="4S4-Z5-0ER"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="NGz-qQ-Kfd">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="My Library" id="JMp-0p-ch5"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outletCollection property="sortButtons" destination="5r6-Hp-iND" collectionClass="NSMutableArray" id="zo3-RT-mpC"/>
+                        <outletCollection property="sortButtons" destination="obo-o4-SgP" collectionClass="NSMutableArray" id="TD8-Kh-ffJ"/>
+                        <outletCollection property="sortButtons" destination="yWh-e6-cJ6" collectionClass="NSMutableArray" id="vX7-bA-cXl"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="icd-zN-LS9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eKT-4C-j3t">
@@ -143,9 +186,9 @@
         <!--New Book Table View Controller-->
         <scene sceneID="o5D-89-YD8">
             <objects>
-                <tableViewController id="fdU-mg-QLy" customClass="NewBookTableViewController" customModule="ReadMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="fdU-mg-QLy" customClass="NewBookTableViewController" customModule="ReadMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UsK-Xm-Uo7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -159,16 +202,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="lastBaseline" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Cmi-bt-s8I">
-                                                    <rect key="frame" x="20" y="8" width="374" height="28"/>
+                                                    <rect key="frame" x="20" y="8.3333333333333339" width="374" height="27.666666666666664"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hb5-aJ-FZd">
-                                                            <rect key="frame" x="0.0" y="1.5" width="75" height="26.5"/>
+                                                            <rect key="frame" x="0.0" y="1.3333333333333321" width="74.666666666666671" height="26.333333333333332"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Text..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FFy-Vb-fbw">
-                                                            <rect key="frame" x="83" y="0.0" width="291" height="34"/>
+                                                            <rect key="frame" x="82.666666666666657" y="0.0" width="291.33333333333337" height="34"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                             <connections>
@@ -199,13 +242,13 @@
                                                     <rect key="frame" x="20" y="5" width="374" height="34"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJl-sI-XZL">
-                                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="74.666666666666671" height="34"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TlI-Fe-4bS">
-                                                            <rect key="frame" x="83" y="0.0" width="291" height="34"/>
+                                                            <rect key="frame" x="82.666666666666657" y="0.0" width="291.33333333333337" height="34"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                             <connections>
@@ -236,7 +279,7 @@
                                                     <rect key="frame" x="111" y="30" width="192" height="240"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CEd-8P-7p2">
-                                                            <rect key="frame" x="0.0" y="0.5" width="192" height="191"/>
+                                                            <rect key="frame" x="0.0" y="1" width="192" height="190.66666666666666"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="CEd-8P-7p2" secondAttribute="height" multiplier="1:1" id="Kjd-zP-Via"/>
                                                             </constraints>
@@ -271,7 +314,18 @@
                             <outlet property="delegate" destination="fdU-mg-QLy" id="kqc-da-1Nn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="DJn-FM-qRm"/>
+                    <navigationItem key="navigationItem" id="DJn-FM-qRm">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="0h1-pN-4OP">
+                            <connections>
+                                <action selector="cancel" destination="fdU-mg-QLy" id="LaQ-9H-JZQ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="5Ih-cE-2fb">
+                            <connections>
+                                <action selector="saveNewBook" destination="fdU-mg-QLy" id="0gv-qK-8YI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorextField" destination="TlI-Fe-4bS" id="63q-5E-BoH"/>
                         <outlet property="bookImageView" destination="CEd-8P-7p2" id="kQk-Gz-oZW"/>
@@ -285,9 +339,9 @@
         <!--Detail Table View Controller-->
         <scene sceneID="p4F-u4-PrT">
             <objects>
-                <tableViewController id="DCt-XE-sm1" customClass="DetailTableViewController" customModule="ReadMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="DCt-XE-sm1" customClass="DetailTableViewController" customModule="ReadMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Etf-ye-YYP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -311,24 +365,27 @@
                                                             <state key="normal" title="Button" image="bookmark.fill" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="48"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="toggleReadMe" destination="DCt-XE-sm1" eventType="touchUpInside" id="gUh-EM-xce"/>
+                                                            </connections>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HTl-c2-6EH">
                                                             <rect key="frame" x="111" y="10" width="263" height="60"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9PT-xO-K8H">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="263" height="33.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="263" height="33.666666666666664"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5J-98-2cH">
-                                                                    <rect key="frame" x="0.0" y="33.5" width="263" height="26.5"/>
+                                                                    <rect key="frame" x="0.0" y="33.666666666666664" width="263" height="26.333333333333336"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhA-kg-jgH">
-                                                                    <rect key="frame" x="0.0" y="50" width="263" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="50.333333333333329" width="263" height="0.0"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -336,7 +393,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="bookmark.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2eN-el-dvg">
-                                                            <rect key="frame" x="374" y="23.5" width="0.0" height="33.5"/>
+                                                            <rect key="frame" x="374" y="23.666666666666671" width="0.0" height="33.333333333333329"/>
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
                                                         </imageView>
                                                     </subviews>
@@ -351,7 +408,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="authorLabel" destination="b5J-98-2cH" id="Fg7-qm-iGe"/>
-                                            <outlet property="readMeBookmark" destination="2eN-el-dvg" id="tXf-0O-zgo"/>
                                             <outlet property="reviewLabel" destination="FhA-kg-jgH" id="Rd7-eS-IzC"/>
                                             <outlet property="titleLabel" destination="9PT-xO-K8H" id="NWC-y2-eA1"/>
                                         </connections>
@@ -364,16 +420,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="Sbm-dA-Sgb">
-                                                    <rect key="frame" x="62" y="-0.5" width="290" height="351"/>
+                                                    <rect key="frame" x="62" y="-0.33333333333334281" width="290" height="350.66666666666674"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="X5b-b2-q2V">
-                                                            <rect key="frame" x="0.0" y="0.5" width="290" height="289"/>
+                                                            <rect key="frame" x="0.0" y="1" width="290" height="288.33333333333337"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="X5b-b2-q2V" secondAttribute="height" multiplier="1:1" id="Rvn-Z8-CuL"/>
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dol-3l-elr">
-                                                            <rect key="frame" x="0.0" y="321" width="290" height="30"/>
+                                                            <rect key="frame" x="0.0" y="320.66666666666663" width="290" height="30"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <state key="normal" title="Update Image..."/>
                                                             <connections>
@@ -423,10 +479,17 @@
                             <outlet property="delegate" destination="DCt-XE-sm1" id="Aim-8k-GgV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Xrv-c0-z0v"/>
+                    <navigationItem key="navigationItem" id="Xrv-c0-z0v">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="i1h-0p-MAD">
+                            <connections>
+                                <action selector="saveChanges" destination="DCt-XE-sm1" id="7mv-pP-weS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorLabel" destination="b5J-98-2cH" id="Tis-nn-uOS"/>
                         <outlet property="imageView" destination="X5b-b2-q2V" id="ah5-MY-2Fi"/>
+                        <outlet property="readMeButton" destination="AE0-6C-7tA" id="X0P-pT-zkY"/>
                         <outlet property="reviewTextview" destination="FUq-gK-cXu" id="hnp-qy-lc0"/>
                         <outlet property="titleLabel" destination="9PT-xO-K8H" id="XW3-yz-pxu"/>
                     </connections>
@@ -438,13 +501,17 @@
         <!--Navigation Controller-->
         <scene sceneID="Gae-sD-uTv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ts3-ES-y2B" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="Ts3-ES-y2B" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="h6N-ne-CkT">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FVi-d4-BY0">
+                        <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="XSG-1Y-k4h" kind="relationship" relationship="rootViewController" id="49J-BR-2Rl"/>
                     </connections>
